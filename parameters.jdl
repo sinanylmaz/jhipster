@@ -1,0 +1,7 @@
+entity Parameters {
+	Id Integer,
+	ParamKey String,
+	ParamValue String,
+	ParametersType String,
+	Description String, 
+}
