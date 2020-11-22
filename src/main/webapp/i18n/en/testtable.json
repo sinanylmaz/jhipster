@@ -1,0 +1,27 @@
+{
+  "elasticExampleApp": {
+    "testtable": {
+      "home": {
+        "title": "Testtables",
+        "createLabel": "Create a new Testtable",
+        "createOrEditLabel": "Create or edit a Testtable",
+        "search": "Search for Testtable",
+        "notFound": "No Testtables found"
+      },
+      "created": "A new Testtable is created with identifier {{ param }}",
+      "updated": "A Testtable is updated with identifier {{ param }}",
+      "deleted": "A Testtable is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Testtable {{ id }}?"
+      },
+      "detail": {
+        "title": "Testtable"
+      },
+      "paramKey": "Param Key",
+      "paramValue": "Param Value",
+      "parametersType": "Parameters Type",
+      "description": "Description",
+      "desctest": "Desctest"
+    }
+  }
+}

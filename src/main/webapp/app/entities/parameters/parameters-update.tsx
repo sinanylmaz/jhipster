@@ -7,6 +7,8 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
+import { IParametersType } from 'app/shared/model/parameters-type.model';
+import { getEntities as getParametersTypes } from 'app/entities/parameters-type/parameters-type.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './parameters.reducer';
 import { IParameters } from 'app/shared/model/parameters.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -15,9 +17,10 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 export interface IParametersUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const ParametersUpdate = (props: IParametersUpdateProps) => {
+  const [parametersTypeId, setParametersTypeId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
-  const { parametersEntity, loading, updating } = props;
+  const { parametersEntity, parametersTypes, loading, updating } = props;
 
   const handleClose = () => {
     props.history.push('/parameters');
@@ -29,6 +32,8 @@ export const ParametersUpdate = (props: IParametersUpdateProps) => {
     } else {
       props.getEntity(props.match.params.id);
     }
+
+    props.getParametersTypes();
   }, []);
 
   useEffect(() => {
@@ -79,7 +84,7 @@ export const ParametersUpdate = (props: IParametersUpdateProps) => {
                 <Label id="paramKeyLabel" for="parameters-paramKey">
                   <Translate contentKey="elasticExampleApp.parameters.paramKey">Param Key</Translate>
                 </Label>
-                <AvField id="parameters-paramKey" type="text" name="paramKey" />
+                <AvField id="parameters-paramKey" type="text" name="paramKey" validate={{}} />
               </AvGroup>
               <AvGroup>
                 <Label id="paramValueLabel" for="parameters-paramValue">
@@ -88,16 +93,31 @@ export const ParametersUpdate = (props: IParametersUpdateProps) => {
                 <AvField id="parameters-paramValue" type="text" name="paramValue" />
               </AvGroup>
               <AvGroup>
-                <Label id="parametersTypeLabel" for="parameters-parametersType">
-                  <Translate contentKey="elasticExampleApp.parameters.parametersType">Parameters Type</Translate>
-                </Label>
-                <AvField id="parameters-parametersType" type="text" name="parametersType" />
-              </AvGroup>
-              <AvGroup>
                 <Label id="descriptionLabel" for="parameters-description">
                   <Translate contentKey="elasticExampleApp.parameters.description">Description</Translate>
                 </Label>
                 <AvField id="parameters-description" type="text" name="description" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="desctestLabel" for="parameters-desctest">
+                  <Translate contentKey="elasticExampleApp.parameters.desctest">Desctest</Translate>
+                </Label>
+                <AvField id="parameters-desctest" type="text" name="desctest" />
+              </AvGroup>
+              <AvGroup>
+                <Label for="parameters-parametersType">
+                  <Translate contentKey="elasticExampleApp.parameters.parametersType">Parameters Type</Translate>
+                </Label>
+                <AvInput id="parameters-parametersType" type="select" className="form-control" name="parametersType.id">
+                  <option value="" key="0" />
+                  {parametersTypes
+                    ? parametersTypes.map(otherEntity => (
+                        <option value={otherEntity.id} key={otherEntity.id}>
+                          {otherEntity.description}
+                        </option>
+                      ))
+                    : null}
+                </AvInput>
               </AvGroup>
               <Button tag={Link} id="cancel-save" to="/parameters" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
@@ -121,6 +141,7 @@ export const ParametersUpdate = (props: IParametersUpdateProps) => {
 };
 
 const mapStateToProps = (storeState: IRootState) => ({
+  parametersTypes: storeState.parametersType.entities,
   parametersEntity: storeState.parameters.entity,
   loading: storeState.parameters.loading,
   updating: storeState.parameters.updating,
@@ -128,6 +149,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
+  getParametersTypes,
   getEntity,
   updateEntity,
   createEntity,

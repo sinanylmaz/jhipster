@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -55,7 +56,7 @@ public class ParametersResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/parameters")
-    public ResponseEntity<Parameters> createParameters(@RequestBody Parameters parameters) throws URISyntaxException {
+    public ResponseEntity<Parameters> createParameters(@Valid @RequestBody Parameters parameters) throws URISyntaxException {
         log.debug("REST request to save Parameters : {}", parameters);
         if (parameters.getId() != null) {
             throw new BadRequestAlertException("A new parameters cannot already have an ID", ENTITY_NAME, "idexists");
@@ -77,7 +78,7 @@ public class ParametersResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/parameters")
-    public ResponseEntity<Parameters> updateParameters(@RequestBody Parameters parameters) throws URISyntaxException {
+    public ResponseEntity<Parameters> updateParameters(@Valid @RequestBody Parameters parameters) throws URISyntaxException {
         log.debug("REST request to update Parameters : {}", parameters);
         if (parameters.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

@@ -9,8 +9,9 @@ export default class ParametersUpdatePage {
   cancelButton: ElementFinder = element(by.id('cancel-save'));
   paramKeyInput: ElementFinder = element(by.css('input#parameters-paramKey'));
   paramValueInput: ElementFinder = element(by.css('input#parameters-paramValue'));
-  parametersTypeInput: ElementFinder = element(by.css('input#parameters-parametersType'));
   descriptionInput: ElementFinder = element(by.css('input#parameters-description'));
+  desctestInput: ElementFinder = element(by.css('input#parameters-desctest'));
+  parametersTypeSelect: ElementFinder = element(by.css('select#parameters-parametersType'));
 
   getPageTitle() {
     return this.pageTitle;
@@ -32,20 +33,36 @@ export default class ParametersUpdatePage {
     return this.paramValueInput.getAttribute('value');
   }
 
-  async setParametersTypeInput(parametersType) {
-    await this.parametersTypeInput.sendKeys(parametersType);
-  }
-
-  async getParametersTypeInput() {
-    return this.parametersTypeInput.getAttribute('value');
-  }
-
   async setDescriptionInput(description) {
     await this.descriptionInput.sendKeys(description);
   }
 
   async getDescriptionInput() {
     return this.descriptionInput.getAttribute('value');
+  }
+
+  async setDesctestInput(desctest) {
+    await this.desctestInput.sendKeys(desctest);
+  }
+
+  async getDesctestInput() {
+    return this.desctestInput.getAttribute('value');
+  }
+
+  async parametersTypeSelectLastOption() {
+    await this.parametersTypeSelect.all(by.tagName('option')).last().click();
+  }
+
+  async parametersTypeSelectOption(option) {
+    await this.parametersTypeSelect.sendKeys(option);
+  }
+
+  getParametersTypeSelect() {
+    return this.parametersTypeSelect;
+  }
+
+  async getParametersTypeSelectedOption() {
+    return this.parametersTypeSelect.element(by.css('option:checked')).getText();
   }
 
   async save() {
@@ -68,11 +85,12 @@ export default class ParametersUpdatePage {
     await this.setParamValueInput('paramValue');
     expect(await this.getParamValueInput()).to.match(/paramValue/);
     await waitUntilDisplayed(this.saveButton);
-    await this.setParametersTypeInput('parametersType');
-    expect(await this.getParametersTypeInput()).to.match(/parametersType/);
-    await waitUntilDisplayed(this.saveButton);
     await this.setDescriptionInput('description');
     expect(await this.getDescriptionInput()).to.match(/description/);
+    await waitUntilDisplayed(this.saveButton);
+    await this.setDesctestInput('desctest');
+    expect(await this.getDesctestInput()).to.match(/desctest/);
+    await this.parametersTypeSelectLastOption();
     await this.save();
     await waitUntilHidden(this.saveButton);
     expect(await isVisible(this.saveButton)).to.be.false;

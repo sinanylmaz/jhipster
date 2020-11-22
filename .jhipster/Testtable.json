@@ -1,0 +1,37 @@
+{
+  "name": "Parameters",
+  "fields": [
+    {
+      "fieldName": "paramKey",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "paramValue",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "parametersType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "desctest",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20201030105502",
+  "entityTableName": "parameters",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

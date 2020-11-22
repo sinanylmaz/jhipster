@@ -50,6 +50,9 @@ public class CacheConfiguration {
             createCache(cm, com.examp.elastic.domain.User.class.getName() + ".authorities");
             createCache(cm, com.examp.elastic.domain.PersistentToken.class.getName());
             createCache(cm, com.examp.elastic.domain.User.class.getName() + ".persistentTokens");
+            createCache(cm, com.examp.elastic.domain.Parameters.class.getName());
+            createCache(cm, com.examp.elastic.domain.Testtable.class.getName());
+            createCache(cm, com.examp.elastic.domain.ParametersType.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -3,5 +3,6 @@ entity Parameters {
 	ParamKey String,
 	ParamValue String,
 	ParametersType String,
-	Description String, 
+	Description String, 	
+	Desctest String, 
 }

@@ -8,8 +8,8 @@ services:
       - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
       - SPRING_DATASOURCE_URL=jdbc:mysql://elasticexample-mysql:3306/elasticexample?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
       - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
-      - SPRING_DATA_JEST_URI=http://elasticexample-elasticsearch:9200
-      - SPRING_ELASTICSEARCH_REST_URIS=http://elasticexample-elasticsearch:9200
+      - SPRING_DATA_JEST_URI=http://localhost:9200
+      - SPRING_ELASTICSEARCH_REST_URIS=localhost:9200
     ports:
       - 8080:8080
   elasticexample-mysql:

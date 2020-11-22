@@ -44,11 +44,11 @@ public class ParametersResourceIT {
     private static final String DEFAULT_PARAM_VALUE = "AAAAAAAAAA";
     private static final String UPDATED_PARAM_VALUE = "BBBBBBBBBB";
 
-    private static final String DEFAULT_PARAMETERS_TYPE = "AAAAAAAAAA";
-    private static final String UPDATED_PARAMETERS_TYPE = "BBBBBBBBBB";
-
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
+
+    private static final String DEFAULT_DESCTEST = "AAAAAAAAAA";
+    private static final String UPDATED_DESCTEST = "BBBBBBBBBB";
 
     @Autowired
     private ParametersRepository parametersRepository;
@@ -79,8 +79,8 @@ public class ParametersResourceIT {
         Parameters parameters = new Parameters()
             .paramKey(DEFAULT_PARAM_KEY)
             .paramValue(DEFAULT_PARAM_VALUE)
-            .parametersType(DEFAULT_PARAMETERS_TYPE)
-            .description(DEFAULT_DESCRIPTION);
+            .description(DEFAULT_DESCRIPTION)
+            .desctest(DEFAULT_DESCTEST);
         return parameters;
     }
     /**
@@ -93,8 +93,8 @@ public class ParametersResourceIT {
         Parameters parameters = new Parameters()
             .paramKey(UPDATED_PARAM_KEY)
             .paramValue(UPDATED_PARAM_VALUE)
-            .parametersType(UPDATED_PARAMETERS_TYPE)
-            .description(UPDATED_DESCRIPTION);
+            .description(UPDATED_DESCRIPTION)
+            .desctest(UPDATED_DESCTEST);
         return parameters;
     }
 
@@ -119,8 +119,8 @@ public class ParametersResourceIT {
         Parameters testParameters = parametersList.get(parametersList.size() - 1);
         assertThat(testParameters.getParamKey()).isEqualTo(DEFAULT_PARAM_KEY);
         assertThat(testParameters.getParamValue()).isEqualTo(DEFAULT_PARAM_VALUE);
-        assertThat(testParameters.getParametersType()).isEqualTo(DEFAULT_PARAMETERS_TYPE);
         assertThat(testParameters.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testParameters.getDesctest()).isEqualTo(DEFAULT_DESCTEST);
 
         // Validate the Parameters in Elasticsearch
         verify(mockParametersSearchRepository, times(1)).save(testParameters);
@@ -162,8 +162,8 @@ public class ParametersResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(parameters.getId().intValue())))
             .andExpect(jsonPath("$.[*].paramKey").value(hasItem(DEFAULT_PARAM_KEY)))
             .andExpect(jsonPath("$.[*].paramValue").value(hasItem(DEFAULT_PARAM_VALUE)))
-            .andExpect(jsonPath("$.[*].parametersType").value(hasItem(DEFAULT_PARAMETERS_TYPE)))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)));
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
+            .andExpect(jsonPath("$.[*].desctest").value(hasItem(DEFAULT_DESCTEST)));
     }
     
     @Test
@@ -179,8 +179,8 @@ public class ParametersResourceIT {
             .andExpect(jsonPath("$.id").value(parameters.getId().intValue()))
             .andExpect(jsonPath("$.paramKey").value(DEFAULT_PARAM_KEY))
             .andExpect(jsonPath("$.paramValue").value(DEFAULT_PARAM_VALUE))
-            .andExpect(jsonPath("$.parametersType").value(DEFAULT_PARAMETERS_TYPE))
-            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION));
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION))
+            .andExpect(jsonPath("$.desctest").value(DEFAULT_DESCTEST));
     }
     @Test
     @Transactional
@@ -205,8 +205,8 @@ public class ParametersResourceIT {
         updatedParameters
             .paramKey(UPDATED_PARAM_KEY)
             .paramValue(UPDATED_PARAM_VALUE)
-            .parametersType(UPDATED_PARAMETERS_TYPE)
-            .description(UPDATED_DESCRIPTION);
+            .description(UPDATED_DESCRIPTION)
+            .desctest(UPDATED_DESCTEST);
 
         restParametersMockMvc.perform(put("/api/parameters").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)
@@ -219,8 +219,8 @@ public class ParametersResourceIT {
         Parameters testParameters = parametersList.get(parametersList.size() - 1);
         assertThat(testParameters.getParamKey()).isEqualTo(UPDATED_PARAM_KEY);
         assertThat(testParameters.getParamValue()).isEqualTo(UPDATED_PARAM_VALUE);
-        assertThat(testParameters.getParametersType()).isEqualTo(UPDATED_PARAMETERS_TYPE);
         assertThat(testParameters.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testParameters.getDesctest()).isEqualTo(UPDATED_DESCTEST);
 
         // Validate the Parameters in Elasticsearch
         verify(mockParametersSearchRepository, times(1)).save(testParameters);
@@ -282,7 +282,7 @@ public class ParametersResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(parameters.getId().intValue())))
             .andExpect(jsonPath("$.[*].paramKey").value(hasItem(DEFAULT_PARAM_KEY)))
             .andExpect(jsonPath("$.[*].paramValue").value(hasItem(DEFAULT_PARAM_VALUE)))
-            .andExpect(jsonPath("$.[*].parametersType").value(hasItem(DEFAULT_PARAMETERS_TYPE)))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)));
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
+            .andExpect(jsonPath("$.[*].desctest").value(hasItem(DEFAULT_DESCTEST)));
     }
 }

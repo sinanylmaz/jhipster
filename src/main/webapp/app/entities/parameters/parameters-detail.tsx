@@ -38,17 +38,21 @@ export const ParametersDetail = (props: IParametersDetailProps) => {
           </dt>
           <dd>{parametersEntity.paramValue}</dd>
           <dt>
-            <span id="parametersType">
-              <Translate contentKey="elasticExampleApp.parameters.parametersType">Parameters Type</Translate>
-            </span>
-          </dt>
-          <dd>{parametersEntity.parametersType}</dd>
-          <dt>
             <span id="description">
               <Translate contentKey="elasticExampleApp.parameters.description">Description</Translate>
             </span>
           </dt>
           <dd>{parametersEntity.description}</dd>
+          <dt>
+            <span id="desctest">
+              <Translate contentKey="elasticExampleApp.parameters.desctest">Desctest</Translate>
+            </span>
+          </dt>
+          <dd>{parametersEntity.desctest}</dd>
+          <dt>
+            <Translate contentKey="elasticExampleApp.parameters.parametersType">Parameters Type</Translate>
+          </dt>
+          <dd>{parametersEntity.parametersType ? parametersEntity.parametersType.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/parameters" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

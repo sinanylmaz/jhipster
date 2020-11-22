@@ -56,7 +56,10 @@ spring:
   jpa:
     show-sql: true
   data:
-    elasticsearch:
+    jest:
+      uris:
+      - http://localhost:9200
+    elasticsearch:    
       properties:
         path:
           home: target/elasticsearch

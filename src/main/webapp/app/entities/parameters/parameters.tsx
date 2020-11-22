@@ -82,10 +82,13 @@ export const Parameters = (props: IParametersProps) => {
                   <Translate contentKey="elasticExampleApp.parameters.paramValue">Param Value</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="elasticExampleApp.parameters.parametersType">Parameters Type</Translate>
+                  <Translate contentKey="elasticExampleApp.parameters.description">Description</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="elasticExampleApp.parameters.description">Description</Translate>
+                  <Translate contentKey="elasticExampleApp.parameters.desctest">Desctest</Translate>
+                </th>
+                <th>
+                  <Translate contentKey="elasticExampleApp.parameters.parametersType">Parameters Type</Translate>
                 </th>
                 <th />
               </tr>
@@ -100,8 +103,15 @@ export const Parameters = (props: IParametersProps) => {
                   </td>
                   <td>{parameters.paramKey}</td>
                   <td>{parameters.paramValue}</td>
-                  <td>{parameters.parametersType}</td>
                   <td>{parameters.description}</td>
+                  <td>{parameters.desctest}</td>
+                  <td>
+                    {parameters.parametersType ? (
+                      <Link to={`parameters-type/${parameters.parametersType.id}`}>{parameters.parametersType.id}</Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${parameters.id}`} color="info" size="sm">

@@ -1,0 +1,14 @@
+entity Parameters {
+	Id Integer,
+	ParamKey String,
+	ParamValue String,
+	Description String, 	
+	Desctest String, 
+}
+entity ParametersType {
+	description String
+}
+
+relationship OneToOne {
+	Parameters{parametersType} to ParametersType
+}

@@ -3,22 +3,34 @@
   "fields": [
     {
       "fieldName": "paramKey",
-      "fieldType": "String"
+      "fieldType": "String",
+	  "fieldValidateRules": [
+                "unique"
+            ]
     },
     {
       "fieldName": "paramValue",
       "fieldType": "String"
     },
     {
-      "fieldName": "parametersType",
+      "fieldName": "description",
       "fieldType": "String"
     },
     {
-      "fieldName": "description",
+      "fieldName": "desctest",
       "fieldType": "String"
     }
   ],
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "parametersType",
+      "otherEntityRelationshipName": "parameters",
+      "relationshipName": "parametersType",
+      "otherEntityField": "id",
+      "ownerSide": true
+    }
+  ],
   "changelogDate": "20201030105502",
   "entityTableName": "parameters",
   "dto": "no",

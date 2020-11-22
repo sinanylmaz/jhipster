@@ -8,6 +8,7 @@ import { Navbar, Nav } from 'reactstrap';
 
 import { Home, Brand } from 'app/shared/layout/header/header-components';
 import { AdminMenu, EntitiesMenu, AccountMenu, LocaleMenu } from 'app/shared/layout/menus';
+import { AboutUs } from 'app/shared/layout/header/header-components';
 import Header from 'app/shared/layout/header/header';
 
 describe('Header', () => {
@@ -99,6 +100,13 @@ describe('Header', () => {
     expect(account.first().props().isAuthenticated).toEqual(true);
   });
 
+  it('Renders AboutUs component.', () => {
+    const component = wrapper(prodProps);
+    expect(component).toMatchSnapshot();
+    const navbar = component.find(Navbar);
+    const nav = component.find(Nav);
+    expect(nav.find(AboutUs).length).toEqual(1);
+  });
   it('Renders a Header component in prod profile with no logged in User', () => {
     const nav = wrapper(guestProps).find(Nav);
     expect(nav.find(AdminMenu).length).toEqual(0);

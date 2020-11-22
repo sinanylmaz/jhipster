@@ -17,16 +17,19 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="param_key" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_parameters_param_key" />
             </column>
             <column name="param_value" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="parameters_type" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
             <column name="description" type="varchar(255)">
                 <constraints nullable="true" />
+            </column>
+            <column name="desctest" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="parameters_type_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_parameters_parameters_type_id" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
@@ -53,8 +56,8 @@
             <column name="id" type="numeric"/>
             <column name="param_key" type="string"/>
             <column name="param_value" type="string"/>
-            <column name="parameters_type" type="string"/>
             <column name="description" type="string"/>
+            <column name="desctest" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

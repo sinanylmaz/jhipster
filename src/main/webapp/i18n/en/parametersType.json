@@ -1,0 +1,23 @@
+{
+  "elasticExampleApp": {
+    "parametersType": {
+      "home": {
+        "title": "Parameters Types",
+        "createLabel": "Create a new Parameters Type",
+        "createOrEditLabel": "Create or edit a Parameters Type",
+        "search": "Search for Parameters Type",
+        "notFound": "No Parameters Types found"
+      },
+      "created": "A new Parameters Type is created with identifier {{ param }}",
+      "updated": "A Parameters Type is updated with identifier {{ param }}",
+      "deleted": "A Parameters Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Parameters Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Parameters Type"
+      },
+      "description": "Description"
+    }
+  }
+}
