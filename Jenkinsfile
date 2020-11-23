@@ -17,7 +17,7 @@ node {
                 sh "./mvnw -ntp clean -P-webpack"
             }
             stage('nohttp') {
-                sh "./mvnw -ntp checkstyle:check"
+                sh "unset MAVEN_CONFIG && ./mvnw -ntp checkstyle:check"
             }
 
             stage('install tools') {
