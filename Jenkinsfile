@@ -6,7 +6,6 @@ node {
     }
 
     gitlabCommitStatus('build') {
-        docker.image('jhipster/jhipster:v6.10.3').inside('-u jhipster -e MAVEN_OPTS="-Duser.home=./"') 
         {
             stage('check java') {
                 sh "java -version"
